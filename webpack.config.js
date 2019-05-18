@@ -1,22 +1,30 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function(env, params) {
+    const isDev = params.mode === 'development';
+    const plugins = [
+        new HtmlWebpackPlugin({
+            template: 'index.html'
+        }),
+        new webpack.DefinePlugin({
+            VERSION: JSON.stringify('1.0.0'),
+            ENV: JSON.stringify(params.mode),
+            IS_DEV: JSON.stringify(isDev)
+        })
+    ];
     return {
         entry: './src/index.js',
         output: {
             path: path.resolve(__dirname, './dist'),
             filename: 'bundle.js'
         },
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: 'index.html'
-            })
-        ],
+        plugins,
         resolve: {
             extensions: ['.wasm', '.mjs', '.js', '.jsx', '.json']
         },
-        devtool: params.mode === 'development' ? 'sourcemap' : '',
+        devtool: isDev ? 'sourcemap' : '',
         module: {
             rules: [
                 {

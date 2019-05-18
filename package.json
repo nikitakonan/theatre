@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "start:server": "nodemon server/app.js",
+    "start:front": "webpack-dev-server --mode development --colors",
+    "start:back": "nodemon server/app.js",
+    "start": "yarn run build:prod && nodemon server/app.js",
     "build": "webpack --mode development",
     "build:prod": "webpack --mode production"
   },
@@ -26,6 +27,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
     "express": "^4.17.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

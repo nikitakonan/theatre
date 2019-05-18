@@ -1,12 +1,11 @@
 import axios from 'axios';
-import actors from './actors';
+
+const config = IS_DEV ? {
+    baseURL: 'http://localhost:3000',
+    crossDomain: true
+} : {};
 
 export function getActors() {
-    axios.get('/api/actors')
-        .then(response => {
-            console.log(response);
-        });
-    return new Promise(resolve => {
-        setTimeout(() => resolve(actors), 1000);
-    });
+    return axios.get('/api/actors', config)
+        .then(response => response.data);
 }

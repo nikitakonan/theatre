@@ -1,8 +1,13 @@
 const express = require('express');
+const cors = require('cors');
+const actors = require('./actors.json');
+
 const app = express();
+app.use(cors());
+app.use(express.static('dist'));
 const apiRouter = express.Router();
+
 const port = 3000;
-const actors = require('../src/actors.json');
 
 apiRouter.get('/actors', (req, res) => {
     res.status(200).send(actors);
