@@ -9,7 +9,7 @@
     "start": "yarn run build:prod && nodemon server/app.js",
     "build": "webpack --mode development",
     "build:prod": "webpack --mode production",
-    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development",
+    "heroku-prebuild": "",
     "heroku-postbuild": ""
   },
   "author": "",

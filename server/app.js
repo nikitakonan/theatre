@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.static('dist'));
 const apiRouter = express.Router();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 apiRouter.get('/actors', (req, res) => {
     res.status(200).send(actors);
