@@ -1,0 +1,35 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: stretch;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    margin-top: 200px;
+}
+
+.login-form .label {
+    font-weight: lighter;
+    font-size: 1.1em;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.login-form .input {
+    display: block;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+.login-form .button {
+    background-color: rgba(110, 100, 100, 0.4);
+    font-size: 1.1em;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.login-form .error {
+    margin-top: 10px;
+    color: red;
+}

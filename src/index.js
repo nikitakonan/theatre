@@ -1,82 +1,60 @@
 import { render } from 'react-dom';
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Link, Redirect, withRouter, Switch } from 'react-router-dom';
+import { getUser, init, signOut } from "./api";
 import './index.css';
-import { Stage } from "./Stage/Stage";
-import { getStageRows } from "./getState";
-import { Actors } from "./Actors/Actors";
-import { getActors } from "./api";
+import { Home } from "./Home/Home";
+import { Login } from "./Login/Login";
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            rows: getStageRows(),
-            actors: [],
-            isLoading: false
-        };
-        this.handleOnBuy = this.handleOnBuy.bind(this);
-    }
-    componentDidMount() {
-        this.setState({ isLoading: true });
-        getActors().then(actors => {
-            const rows = this.state.rows.map(row => ({
-                ...row,
-                seats: row.seats.map(seat => ({
-                    ...seat,
-                    actor: findActor(actors, row.number, seat.number)
-                }))
-            }));
-            this.setState({
-                rows,
-                actors,
-                isLoading: false
-            })
-        })
-    }
-    handleOnBuy(data) {
-        const { rows } = this.state;
-        const rowIndex = rows.findIndex(r => r.number === data.row);
-        const row = rows[rowIndex];
-        const seatIndex = row.seats.findIndex(s => s.number === data.seat);
-        const seat = row.seats[seatIndex];
+init(() => {
+    render(<AppRouter/>, document.getElementById('root'));
+});
 
-        const newRow = {
-            ...row,
-            seats: [
-                ...row.seats.slice(0, seatIndex),
-                {
-                    ...seat,
-                    isBought: !seat.isBought
-                },
-                ...row.seats.slice(seatIndex + 1)
-            ]
-        };
-        this.setState({
-            rows: [
-                ...rows.slice(0, rowIndex),
-                newRow,
-                ...rows.slice(rowIndex + 1)
-            ]
-        })
+const AuthButton = withRouter(({ history }) => {
+    const user = getUser();
+    return user != null
+        ? (<p style={{ float: 'right' }}>
+            Welcome {user.email}{" "}
+            <button onClick={() => {
+                signOut().then(() => {
+                    history.push('/');
+                })
+            }}>Sign Out
+            </button>
+        </p>)
+        : (<p style={{ float: 'right' }}>You are not logged in</p>);
     }
-    render() {
-        const { rows, actors, isLoading } = this.state;
-        return (
+);
+
+function AppRouter() {
+    return (
+        <BrowserRouter>
             <div>
-                <h1>Tickets</h1>
-                <Stage rows={rows} onBuy={this.handleOnBuy}/>
-                {isLoading && <div>Loading...</div>}
-                <Actors actors={actors} />
+                <AuthButton/>
+                <ul style={{ display: 'inline-block' }}>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                </ul>
             </div>
-        );
-    }
+            <Switch>
+                <PrivateRoute exact path="/" component={Home}/>
+                <Route exact path="/login" component={Login}/>
+            </Switch>
+        </BrowserRouter>
+    );
 }
 
-render(<App/>, document.getElementById('root'));
-
-function findActor(actors, row, seat) {
-    return actors.find(actor => {
-        const actorSeats = actor.seats;
-        return actorSeats.some(st => st.row === row && st.seat === seat);
-    });
+function PrivateRoute({ component: Component, ...rest }) {
+    const user = getUser();
+    return (
+        <Route {...rest} render={props =>
+            user != null
+                ? (<Component {...props}/>)
+                : (<Redirect to={{
+                    pathname: '/login',
+                    state: { from: props.location }
+                }}/>)
+        }/>
+    );
 }
