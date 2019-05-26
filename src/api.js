@@ -37,8 +37,11 @@ export function signOut() {
 
 export function getActors() {
     return firestore().collection('actors').get()
-        .then(snapshot =>
-            snapshot.docs.map(docSnapshot => docSnapshot.data()));
+        .then(snapshot => snapshot.docs.map(docSnapshot => {
+            const data = docSnapshot.data();
+            data.id = docSnapshot.id;
+            return data;
+        }));
 }
 
 export function addActor(actor) {

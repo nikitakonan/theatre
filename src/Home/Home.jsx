@@ -4,13 +4,55 @@ import { addActor, getActors } from "../api";
 import { Stage } from "../Stage/Stage";
 import { Actors } from "../Actors/Actors";
 
+class ActorsDropdown extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            actors: []
+        };
+    }
+    static getDerivedStateFromProps(props, state) {
+        return {
+            ...state,
+            actors: [
+                {
+                    id: 'unique_key',
+                    name: 'none',
+                    value: ''
+                },
+                ...props.actors
+            ]
+        }
+    }
+    handleActorChanged(event) {
+        const { onChange } = this.props;
+        const { actors } = this.state;
+        const id = event.target.value;
+        const actor = id === 'unique_key' ? null : actors.find(a => a.id === id);
+        typeof onChange === 'function' && onChange(actor);
+    }
+    render() {
+        const { selected } = this.props;
+        const { actors } = this.state;
+        return (
+            <select value={selected ? selected.id : 'unique_key'}
+                    onChange={this.handleActorChanged.bind(this)}>
+                {actors.map(actor =>
+                    <option key={actor.id} value={actor.id}>{actor.name}</option>
+                )}
+            </select>
+        );
+    }
+}
+
 export class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             rows: getStageRows(),
             actors: [],
-            isLoading: false
+            isLoading: false,
+            selectedActor: null,
         };
     }
     componentDidMount() {
@@ -40,11 +82,19 @@ export class Home extends Component {
             })
         });
     }
+    handleActorChanged(actor) {
+        this.setState({
+            selectedActor: actor
+        })
+    }
     render() {
-        const { rows, actors, isLoading } = this.state;
+        const { rows, actors, isLoading, selectedActor } = this.state;
         return (
             <div>
                 <h1>Tickets</h1>
+                <ActorsDropdown selected={selectedActor}
+                                actors={actors}
+                                onChange={this.handleActorChanged.bind(this)}/>
                 <Stage rows={rows}/>
                 {isLoading && <div>Loading...</div>}
                 <Actors onAdd={this.handleAddActor.bind(this)} actors={actors} />

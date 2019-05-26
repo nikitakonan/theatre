@@ -16,7 +16,7 @@ export class Actors extends Component {
                 <AddActor onAdd={this.handleAddActor.bind(this)}/>
                 <ol>
                     {actors.map((actor) => (
-                        <li key={actor.name}>
+                        <li key={actor.id}>
                             <Actor {...actor}/>
                         </li>
                     ))}

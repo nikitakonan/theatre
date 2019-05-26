@@ -24,58 +24,19 @@
         "name": "Игорь Коротков",
         "color": "#9900FF",
         "seats": [
-            {
-                "row": 7,
-                "seat": 5
-            },
-            {
-                "row": 7,
-                "seat": 4
-            },
-            {
-                "row": 7,
-                "seat": 3
-            },
-            {
-                "row": 7,
-                "seat": 2
-            },
-            {
-                "row": 7,
-                "seat": 1
-            },
-            {
-                "row": 1,
-                "seat": 9
-            },
-            {
-                "row": 1,
-                "seat": 10
-            },
-            {
-                "row": 3,
-                "seat": 9
-            },
-            {
-                "row": 3,
-                "seat": 10
-            },
-            {
-                "row": 3,
-                "seat": 11
-            },
-            {
-                "row": 3,
-                "seat": 12
-            },
-            {
-                "row": 8,
-                "seat": 9
-            },
-            {
-                "row": 8,
-                "seat": 10
-            }
+            {"row": 7, "seat": 5},
+            {"row": 7, "seat": 4},
+            {"row": 7, "seat": 3},
+            {"row": 7, "seat": 2},
+            {"row": 7, "seat": 1},
+            {"row": 1, "seat": 9},
+            {"row": 1, "seat": 10},
+            {"row": 3, "seat": 9},
+            {"row": 3, "seat": 10},
+            {"row": 3, "seat": 11},
+            {"row": 3, "seat": 12},
+            {"row": 8, "seat": 9},
+            {"row": 8, "seat": 10}
         ]
     },
     {
@@ -83,58 +44,19 @@
         "name": "Вика Кондратьева",
         "color": "#00FF00",
         "seats": [
-            {
-                "row": 1,
-                "seat": 3
-            },
-            {
-                "row": 1,
-                "seat": 4
-            },
-            {
-                "row": 3,
-                "seat": 8
-            },
-            {
-                "row": 3,
-                "seat": 7
-            },
-            {
-                "row": 3,
-                "seat": 6
-            },
-            {
-                "row": 3,
-                "seat": 5
-            },
-            {
-                "row": 2,
-                "seat": 10
-            },
-            {
-                "row": 2,
-                "seat": 11
-            },
-            {
-                "row": 7,
-                "seat": 12
-            },
-            {
-                "row": 7,
-                "seat": 13
-            },
-            {
-                "row": 7,
-                "seat": 14
-            },
-            {
-                "row": 10,
-                "seat": 3
-            },
-            {
-                "row": 10,
-                "seat": 4
-            }
+            {"row": 1, "seat": 3},
+            {"row": 1, "seat": 4},
+            {"row": 3, "seat": 8},
+            {"row": 3, "seat": 7},
+            {"row": 3, "seat": 6},
+            {"row": 3, "seat": 5},
+            {"row": 2, "seat": 10},
+            {"row": 2, "seat": 11},
+            {"row": 7, "seat": 12},
+            {"row": 7, "seat": 13},
+            {"row": 7, "seat": 14},
+            {"row": 10, "seat": 3},
+            {"row": 10, "seat": 4}
         ]
     },
     {
@@ -142,58 +64,19 @@
         "name": "Андрей Борушко",
         "color": "#00FFFF",
         "seats": [
-            {
-                "row": 2,
-                "seat": 9
-            },
-            {
-                "row": 2,
-                "seat": 8
-            },
-            {
-                "row": 2,
-                "seat": 7
-            },
-            {
-                "row": 2,
-                "seat": 6
-            },
-            {
-                "row": 5,
-                "seat": 1
-            },
-            {
-                "row": 5,
-                "seat": 2
-            },
-            {
-                "row": 5,
-                "seat": 14
-            },
-            {
-                "row": 5,
-                "seat": 15
-            },
-            {
-                "row": 5,
-                "seat": 16
-            },
-            {
-                "row": 10,
-                "seat": 9
-            },
-            {
-                "row": 10,
-                "seat": 10
-            },
-            {
-                "row": 10,
-                "seat": 11
-            },
-            {
-                "row": 10,
-                "seat": 12
-            }
+            {"row": 2, "seat": 9},
+            {"row": 2, "seat": 8},
+            {"row": 2, "seat": 7},
+            {"row": 2, "seat": 6},
+            {"row": 5, "seat": 1},
+            {"row": 5, "seat": 2},
+            {"row": 5, "seat": 14},
+            {"row": 5, "seat": 15},
+            {"row": 5, "seat": 16},
+            {"row": 10, "seat": 9},
+            {"row": 10, "seat": 10},
+            {"row": 10, "seat": 11},
+            {"row": 10, "seat": 12}
         ]
     },
     {
@@ -201,58 +84,19 @@
         "name": "Вика Войтова",
         "color": "#0000FF",
         "seats": [
-            {
-                "row": 1,
-                "seat": 7
-            },
-            {
-                "row": 1,
-                "seat": 8
-            },
-            {
-                "row": 3,
-                "seat": 1
-            },
-            {
-                "row": 3,
-                "seat": 2
-            },
-            {
-                "row": 3,
-                "seat": 3
-            },
-            {
-                "row": 3,
-                "seat": 4
-            },
-            {
-                "row": 6,
-                "seat": 9
-            },
-            {
-                "row": 6,
-                "seat": 8
-            },
-            {
-                "row": 6,
-                "seat": 7
-            },
-            {
-                "row": 9,
-                "seat": 11
-            },
-            {
-                "row": 9,
-                "seat": 12
-            },
-            {
-                "row": 11,
-                "seat": 3
-            },
-            {
-                "row": 11,
-                "seat": 4
-            }
+            {"row": 1, "seat": 7},
+            {"row": 1, "seat": 8},
+            {"row": 3, "seat": 1},
+            {"row": 3, "seat": 2},
+            {"row": 3, "seat": 3},
+            {"row": 3, "seat": 4},
+            {"row": 6, "seat": 9},
+            {"row": 6, "seat": 8},
+            {"row": 6, "seat": 7},
+            {"row": 9, "seat": 11},
+            {"row": 9, "seat": 12},
+            {"row": 11, "seat": 3},
+            {"row": 11, "seat": 4}
         ]
     },
     {
@@ -260,58 +104,19 @@
         "name": "Катя Петрашкевич",
         "color": "#FF9900",
         "seats": [
-            {
-                "row": 2,
-                "seat": 1
-            },
-            {
-                "row": 2,
-                "seat": 2
-            },
-            {
-                "row": 2,
-                "seat": 3
-            },
-            {
-                "row": 2,
-                "seat": 4
-            },
-            {
-                "row": 2,
-                "seat": 5
-            },
-            {
-                "row": 7,
-                "seat": 7
-            },
-            {
-                "row": 7,
-                "seat": 6
-            },
-            {
-                "row": 7,
-                "seat": 10
-            },
-            {
-                "row": 7,
-                "seat": 11
-            },
-            {
-                "row": 10,
-                "seat": 5
-            },
-            {
-                "row": 10,
-                "seat": 6
-            },
-            {
-                "row": 11,
-                "seat": 9
-            },
-            {
-                "row": 11,
-                "seat": 10
-            }
+            {"row": 2, "seat": 1},
+            {"row": 2, "seat": 2},
+            {"row": 2, "seat": 3},
+            {"row": 2, "seat": 4},
+            {"row": 2, "seat": 5},
+            {"row": 7, "seat": 7},
+            {"row": 7, "seat": 6},
+            {"row": 7, "seat": 10},
+            {"row": 7, "seat": 11},
+            {"row": 10, "seat": 5},
+            {"row": 10, "seat": 6},
+            {"row": 11, "seat": 9},
+            {"row": 11, "seat": 10}
         ]
     },
     {
@@ -319,58 +124,19 @@
         "name": "Паша Афанасьев",
         "color": "#D5A6BD",
         "seats": [
-            {
-                "row": 6,
-                "seat": 5
-            },
-            {
-                "row": 6,
-                "seat": 6
-            },
-            {
-                "row": 4,
-                "seat": 13
-            },
-            {
-                "row": 4,
-                "seat": 12
-            },
-            {
-                "row": 4,
-                "seat": 11
-            },
-            {
-                "row": 4,
-                "seat": 10
-            },
-            {
-                "row": 4,
-                "seat": 9
-            },
-            {
-                "row": 8,
-                "seat": 13
-            },
-            {
-                "row": 8,
-                "seat": 14
-            },
-            {
-                "row": 9,
-                "seat": 1
-            },
-            {
-                "row": 9,
-                "seat": 2
-            },
-            {
-                "row": 10,
-                "seat": 7
-            },
-            {
-                "row": 10,
-                "seat": 8
-            }
+            {"row": 6, "seat": 5},
+            {"row": 6, "seat": 6},
+            {"row": 4, "seat": 13},
+            {"row": 4, "seat": 12},
+            {"row": 4, "seat": 11},
+            {"row": 4, "seat": 10},
+            {"row": 4, "seat": 9},
+            {"row": 8, "seat": 13},
+            {"row": 8, "seat": 14},
+            {"row": 9, "seat": 1},
+            {"row": 9, "seat": 2},
+            {"row": 10, "seat": 7},
+            {"row": 10, "seat": 8}
         ]
     },
     {
@@ -378,58 +144,19 @@
         "name": "Саша Иванов",
         "color": "#999999",
         "seats": [
-            {
-                "row": 4,
-                "seat": 1
-            },
-            {
-                "row": 4,
-                "seat": 2
-            },
-            {
-                "row": 4,
-                "seat": 4
-            },
-            {
-                "row": 4,
-                "seat": 3
-            },
-            {
-                "row": 8,
-                "seat": 8
-            },
-            {
-                "row": 8,
-                "seat": 7
-            },
-            {
-                "row": 8,
-                "seat": 6
-            },
-            {
-                "row": 8,
-                "seat": 5
-            },
-            {
-                "row": 2,
-                "seat": 14
-            },
-            {
-                "row": 2,
-                "seat": 15
-            },
-            {
-                "row": 6,
-                "seat": 12
-            },
-            {
-                "row": 6,
-                "seat": 11
-            },
-            {
-                "row": 6,
-                "seat": 10
-            }
+            {"row": 4, "seat": 1},
+            {"row": 4, "seat": 2},
+            {"row": 4, "seat": 4},
+            {"row": 4, "seat": 3},
+            {"row": 8, "seat": 8},
+            {"row": 8, "seat": 7},
+            {"row": 8, "seat": 6},
+            {"row": 8, "seat": 5},
+            {"row": 2, "seat": 14},
+            {"row": 2, "seat": 15},
+            {"row": 6, "seat": 12},
+            {"row": 6, "seat": 11},
+            {"row": 6, "seat": 10}
         ]
     },
     {
@@ -437,58 +164,19 @@
         "name": "Люба Андриенко",
         "color": "#FF669E",
         "seats": [
-            {
-                "row": 6,
-                "seat": 1
-            },
-            {
-                "row": 6,
-                "seat": 2
-            },
-            {
-                "row": 6,
-                "seat": 3
-            },
-            {
-                "row": 6,
-                "seat": 4
-            },
-            {
-                "row": 4,
-                "seat": 14
-            },
-            {
-                "row": 4,
-                "seat": 15
-            },
-            {
-                "row": 4,
-                "seat": 16
-            },
-            {
-                "row": 9,
-                "seat": 3
-            },
-            {
-                "row": 9,
-                "seat": 4
-            },
-            {
-                "row": 9,
-                "seat": 5
-            },
-            {
-                "row": 9,
-                "seat": 6
-            },
-            {
-                "row": 11,
-                "seat": 1
-            },
-            {
-                "row": 11,
-                "seat": 2
-            }
+            {"row": 6, "seat": 1},
+            {"row": 6, "seat": 2},
+            {"row": 6, "seat": 3},
+            {"row": 6, "seat": 4},
+            {"row": 4, "seat": 14},
+            {"row": 4, "seat": 15},
+            {"row": 4, "seat": 16},
+            {"row": 9, "seat": 3},
+            {"row": 9, "seat": 4},
+            {"row": 9, "seat": 5},
+            {"row": 9, "seat": 6},
+            {"row": 11, "seat": 1},
+            {"row": 11, "seat": 2}
         ]
     },
     {
@@ -496,58 +184,19 @@
         "name": "Никита Конан",
         "color": "#FFFF00",
         "seats": [
-            {
-                "row": 4,
-                "seat": 8
-            },
-            {
-                "row": 4,
-                "seat": 7
-            },
-            {
-                "row": 4,
-                "seat": 6
-            },
-            {
-                "row": 4,
-                "seat": 5
-            },
-            {
-                "row": 5,
-                "seat": 3
-            },
-            {
-                "row": 5,
-                "seat": 5
-            },
-            {
-                "row": 5,
-                "seat": 4
-            },
-            {
-                "row": 7,
-                "seat": 8
-            },
-            {
-                "row": 7,
-                "seat": 9
-            },
-            {
-                "row": 8,
-                "seat": 15
-            },
-            {
-                "row": 8,
-                "seat": 16
-            },
-            {
-                "row": 11,
-                "seat": 13
-            },
-            {
-                "row": 11,
-                "seat": 14
-            }
+            {"row": 4, "seat": 8},
+            {"row": 4, "seat": 7},
+            {"row": 4, "seat": 6},
+            {"row": 4, "seat": 5},
+            {"row": 5, "seat": 3},
+            {"row": 5, "seat": 5},
+            {"row": 5, "seat": 4},
+            {"row": 7, "seat": 8},
+            {"row": 7, "seat": 9},
+            {"row": 8, "seat": 15},
+            {"row": 8, "seat": 16},
+            {"row": 11, "seat": 13},
+            {"row": 11, "seat": 14}
         ]
     },
     {
@@ -555,58 +204,19 @@
         "name": "Настя Мельник",
         "color": "#990000",
         "seats": [
-            {
-                "row": 1,
-                "seat": 5
-            },
-            {
-                "row": 1,
-                "seat": 6
-            },
-            {
-                "row": 5,
-                "seat": 11
-            },
-            {
-                "row": 5,
-                "seat": 12
-            },
-            {
-                "row": 5,
-                "seat": 13
-            },
-            {
-                "row": 8,
-                "seat": 11
-            },
-            {
-                "row": 8,
-                "seat": 12
-            },
-            {
-                "row": 9,
-                "seat": 9
-            },
-            {
-                "row": 9,
-                "seat": 10
-            },
-            {
-                "row": 11,
-                "seat": 8
-            },
-            {
-                "row": 11,
-                "seat": 7
-            },
-            {
-                "row": 11,
-                "seat": 6
-            },
-            {
-                "row": 11,
-                "seat": 5
-            }
+            {"row": 1, "seat": 5},
+            {"row": 1, "seat": 6},
+            {"row": 5, "seat": 11},
+            {"row": 5, "seat": 12},
+            {"row": 5, "seat": 13},
+            {"row": 8, "seat": 11},
+            {"row": 8, "seat": 12},
+            {"row": 9, "seat": 9},
+            {"row": 9, "seat": 10},
+            {"row": 11, "seat": 8},
+            {"row": 11, "seat": 7},
+            {"row": 11, "seat": 6},
+            {"row": 11, "seat": 5}
         ]
     },
     {
@@ -614,54 +224,18 @@
         "name": "Дана Бородзе",
         "color": "#38761D",
         "seats": [
-            {
-                "row": 1,
-                "seat": 1
-            },
-            {
-                "row": 1,
-                "seat": 2
-            },
-            {
-                "row": 6,
-                "seat": 13
-            },
-            {
-                "row": 6,
-                "seat": 14
-            },
-            {
-                "row": 6,
-                "seat": 15
-            },
-            {
-                "row": 6,
-                "seat": 16
-            },
-            {
-                "row": 7,
-                "seat": 15
-            },
-            {
-                "row": 7,
-                "seat": 16
-            },
-            {
-                "row": 10,
-                "seat": 1
-            },
-            {
-                "row": 10,
-                "seat": 2
-            },
-            {
-                "row": 11,
-                "seat": 11
-            },
-            {
-                "row": 11,
-                "seat": 12
-            }
+            {"row": 1, "seat": 1},
+            {"row": 1, "seat": 2},
+            {"row": 6, "seat": 13},
+            {"row": 6, "seat": 14},
+            {"row": 6, "seat": 15},
+            {"row": 6, "seat": 16},
+            {"row": 7, "seat": 15},
+            {"row": 7, "seat": 16},
+            {"row": 10, "seat": 1},
+            {"row": 10, "seat": 2},
+            {"row": 11, "seat": 11},
+            {"row": 11, "seat": 12}
         ]
     },
     {
@@ -669,54 +243,18 @@
         "name": "Игорь Борушко",
         "color": "#FF04D4",
         "seats": [
-            {
-                "row": 2,
-                "seat": 12
-            },
-            {
-                "row": 2,
-                "seat": 13
-            },
-            {
-                "row": 3,
-                "seat": 13
-            },
-            {
-                "row": 3,
-                "seat": 14
-            },
-            {
-                "row": 3,
-                "seat": 15
-            },
-            {
-                "row": 3,
-                "seat": 16
-            },
-            {
-                "row": 9,
-                "seat": 13
-            },
-            {
-                "row": 9,
-                "seat": 14
-            },
-            {
-                "row": 9,
-                "seat": 15
-            },
-            {
-                "row": 9,
-                "seat": 16
-            },
-            {
-                "row": 9,
-                "seat": 7
-            },
-            {
-                "row": 9,
-                "seat": 8
-            }
+            {"row": 2, "seat": 12},
+            {"row": 2, "seat": 13},
+            {"row": 3, "seat": 13},
+            {"row": 3, "seat": 14},
+            {"row": 3, "seat": 15},
+            {"row": 3, "seat": 16},
+            {"row": 9, "seat": 13},
+            {"row": 9, "seat": 14},
+            {"row": 9, "seat": 15},
+            {"row": 9, "seat": 16},
+            {"row": 9, "seat": 7},
+            {"row": 9, "seat": 8}
         ]
     }
 ]
