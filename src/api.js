@@ -9,13 +9,13 @@ const config = IS_DEV ? {
 
 export function init(callback) {
     initializeApp({
-        apiKey: 'AIzaSyA4-xKC6rYHCQg28TG4ORPmuIpwndo4eVQ',
-        authDomain: 'theatre-app-946ba.firebaseapp.com',
-        databaseURL: 'https://theatre-app-946ba.firebaseio.com',
-        projectId: 'theatre-app-946ba',
-        storageBucket: 'theatre-app-946ba.appspot.com',
-        messagingSenderId: '108232748151',
-        appId: '1:108232748151:web:2e4d64f9e63712f5'
+        apiKey: API_KEY,
+        authDomain: `${PROJECT_ID}.firebaseapp.com`,
+        databaseURL: `https://${PROJECT_ID}.firebaseio.com`,
+        projectId: PROJECT_ID,
+        storageBucket: `${PROJECT_ID}.appspot.com`,
+        messagingSenderId: MESSAGING_ID,
+        appId: APP_ID
     });
 
     auth().onAuthStateChanged(user => {

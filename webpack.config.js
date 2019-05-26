@@ -11,7 +11,11 @@ module.exports = function(env, params) {
         new webpack.DefinePlugin({
             VERSION: JSON.stringify('1.0.0'),
             ENV: JSON.stringify(params.mode),
-            IS_DEV: JSON.stringify(isDev)
+            IS_DEV: JSON.stringify(isDev),
+            API_KEY: JSON.stringify(process.env.API_KEY),
+            APP_ID: JSON.stringify(process.env.APP_ID),
+            MESSAGING_ID: JSON.stringify(process.env.MESSAGING_ID),
+            PROJECT_ID: JSON.stringify(process.env.PROJECT_ID)
         })
     ];
     return {
