@@ -40,3 +40,7 @@ export function getActors() {
         .then(snapshot =>
             snapshot.docs.map(docSnapshot => docSnapshot.data()));
 }
+
+export function addActor(actor) {
+    return firestore().collection('actors').add(actor);
+}
