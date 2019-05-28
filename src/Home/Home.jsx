@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { getStageRows } from "../getState";
-import { addActor, getActors } from "../api";
+import { getActors } from "../api";
 import { Stage } from "../Stage/Stage";
-import { Actors } from "../Actors/Actors";
 import { ActorsDropdown } from "../ActorsDropdown/ActorsDropdown";
 
 export class Home extends Component {
@@ -11,12 +10,10 @@ export class Home extends Component {
         this.state = {
             rows: getStageRows(),
             actors: [],
-            isLoading: false,
             selectedActor: null,
         };
     }
     componentDidMount() {
-        this.setState({ isLoading: true });
         getActors().then(actors => {
             const rows = this.state.rows.map(row => ({
                 ...row,
@@ -28,19 +25,8 @@ export class Home extends Component {
             this.setState({
                 rows,
                 actors,
-                isLoading: false
             })
         })
-    }
-    handleAddActor(actor) {
-        addActor(actor).then(() => {
-            this.setState({
-                actors: [
-                    ...this.state.actors,
-                    actor
-                ]
-            })
-        });
     }
     handleActorChanged(actor) {
         this.setState({
@@ -48,7 +34,7 @@ export class Home extends Component {
         })
     }
     render() {
-        const { rows, actors, isLoading, selectedActor } = this.state;
+        const { rows, actors, selectedActor } = this.state;
         return (
             <div>
                 <h1>Tickets</h1>
@@ -56,8 +42,6 @@ export class Home extends Component {
                                 actors={actors}
                                 onChange={this.handleActorChanged.bind(this)}/>
                 <Stage rows={rows}/>
-                {isLoading && <div>Loading...</div>}
-                <Actors onAdd={this.handleAddActor.bind(this)} actors={actors} />
             </div>
         );
     }

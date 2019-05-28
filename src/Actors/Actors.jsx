@@ -1,16 +1,35 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Actor } from "./Actor";
 import { AddActor } from "./AddActor";
 import './actors.css';
+import { addActor, getActors } from "../api";
 
 export class Actors extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            actors: []
+        };
+    }
+    componentDidMount() {
+        getActors().then(actors => {
+            this.setState({
+                actors
+            });
+        });
+    }
     handleAddActor(actor) {
-        const { onAdd } = this.props;
-        typeof onAdd === 'function' && onAdd(actor);
+        addActor(actor).then(() => {
+            this.setState({
+                actors: [
+                    ...this.state.actors,
+                    actor
+                ]
+            });
+        });
     }
     render() {
-        let { actors } = this.props;
+        let { actors } = this.state;
         return (
             <section className="actors">
                 <AddActor onAdd={this.handleAddActor.bind(this)}/>
@@ -25,5 +44,3 @@ export class Actors extends Component {
         );
     }
 }
-
-Actors.propTypes = { actors: PropTypes.array };

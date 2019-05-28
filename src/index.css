@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    background-color: #aaa;
+}
+
+.menu {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+.menu .menu-item {
+    display: inherit;
+}
+
+.menu .menu-item a {
+    color: white;
+    text-align: center;
+    padding: 10px 12px;
+    text-decoration: none;
+}
+
+.menu .menu-item a:hover {
+    background-color: #bbb;
+}
+
+.menu .menu-item a.active {
+    background-color: #888;
+}
