@@ -2,7 +2,7 @@ import React from 'react';
 import { Row } from "./Row";
 import './stage.css';
 
-export function Stage({ rows, onBuy }) {
+export function Stage({ rows, onClick }) {
     return (
         <div className="stage">
             {
@@ -12,7 +12,7 @@ export function Stage({ rows, onBuy }) {
                     const rightOffset = shouldOffset ? 30 : 0;
                     return (
                         <Row key={number}
-                             onBuy={onBuy}
+                             onClick={onClick}
                              seats={seats}
                              number={number}
                              rightOffset={rightOffset}/>

@@ -5,11 +5,11 @@ import * as PropTypes from "prop-types";
 export class Row extends Component {
     constructor(props) {
         super(props);
-        this.handleBuy = this.handleBuy.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
-    handleBuy(data) {
-        const { onBuy, number } = this.props;
-        onBuy && onBuy({
+    handleClick(data) {
+        const { onClick, number } = this.props;
+        onClick && onClick({
             ...data,
             row: number
         });
@@ -22,7 +22,7 @@ export class Row extends Component {
                     {number} ряд
                 </div>
                 <div className="row-seats" style={{ marginRight: rightOffset }}>
-                    {seats.map(seat => <Seat key={seat.number} onBuy={this.handleBuy} {...seat}/>)}
+                    {seats.map(seat => <Seat key={seat.number} onClick={this.handleClick} {...seat}/>)}
                 </div>
             </div>
         )
@@ -33,5 +33,5 @@ Row.propTypes = {
     number: PropTypes.any,
     rightOffset: PropTypes.any,
     seats: PropTypes.any,
-    onBuy: PropTypes.any
+    onClick: PropTypes.func
 };

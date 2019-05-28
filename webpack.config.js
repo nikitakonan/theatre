@@ -6,7 +6,8 @@ module.exports = function(env, params) {
     const isDev = params.mode === 'development';
     const plugins = [
         new HtmlWebpackPlugin({
-            template: 'index.html'
+            template: 'index.html',
+            favicon: 'favicon.ico'
         }),
         new webpack.DefinePlugin({
             VERSION: JSON.stringify('1.0.0'),

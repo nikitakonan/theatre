@@ -8,7 +8,7 @@ export class Seat extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick() {
-        this.props.onBuy && this.props.onBuy({
+        this.props.onClick && this.props.onClick({
             seat: this.props.number
         });
     }
@@ -33,5 +33,5 @@ Seat.propTypes = {
     number: PropTypes.any,
     actor: PropTypes.any,
     isBought: PropTypes.any,
-    onBuy: PropTypes.func
+    onClick: PropTypes.func
 };
