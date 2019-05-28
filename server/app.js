@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const actors = require('./actors.json');
 
 const app = express();
@@ -14,5 +15,9 @@ apiRouter.get('/actors', (req, res) => {
 });
 
 app.use('/api', apiRouter);
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 app.listen(port, () => console.log('app listening on port ' + port));
