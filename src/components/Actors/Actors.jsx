@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Actor } from "./Actor";
 import { AddActor } from "./AddActor";
 import './actors.css';
-import { addActor, getActors } from "../api";
+import { addActor, getActors } from "../../api";
 
 export class Actors extends Component {
     constructor(props) {

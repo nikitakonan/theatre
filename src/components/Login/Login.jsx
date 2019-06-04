@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { logIn } from "../api";
 import { Redirect } from "react-router-dom";
+import { logIn } from "../../api";
 import './login.css';
 
 export class Login extends Component {

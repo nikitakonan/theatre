@@ -1,33 +1,32 @@
 import { render } from 'react-dom';
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Redirect, withRouter, Switch, NavLink } from 'react-router-dom';
-import { getUser, init, signOut } from "./api";
+import React  from 'react';
+import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
+import { createStore } from 'redux';
+import { init } from './api';
+import { appReducer } from './reducers';
+import { AuthButton, PrivateRoute, Actors, Login, Home } from "./components/";
 import './index.css';
-import { Home } from "./Home/Home";
-import { Login } from "./Login/Login";
-import { Actors } from "./Actors/Actors";
 
-init(() => {
+const store = createStore(appReducer);
+
+store.subscribe(() => {
+    console.log(store.getState());
     render(<AppRouter/>, document.getElementById('root'));
 });
 
-const AuthButton = withRouter(({ history }) => {
-    const user = getUser();
-    return user != null
-        ? (<p>
-            Welcome {user.email}{" "}
-            <button onClick={() => {
-                signOut().then(() => {
-                    history.push('/');
-                })
-            }}>Sign Out
-            </button>
-        </p>)
-        : (<p>You are not logged in</p>);
-    }
-);
+init(() => {
+    store.dispatch({
+        type: 'INITIALIZE'
+    });
+});
+
+render(<AppRouter/>, document.getElementById('root'));
 
 function AppRouter() {
+    const state = store.getState();
+    if (!state.initialized) {
+        return <div>Not initialized</div>
+    }
     return (
         <BrowserRouter>
             <div className="header">
@@ -48,19 +47,5 @@ function AppRouter() {
                 <PrivateRoute exact path="/" component={Home}/>
             </Switch>
         </BrowserRouter>
-    );
-}
-
-function PrivateRoute({ component: Component, ...rest }) {
-    const user = getUser();
-    return (
-        <Route {...rest} render={props =>
-            user != null
-                ? (<Component {...props}/>)
-                : (<Redirect to={{
-                    pathname: '/login',
-                    state: { from: props.location }
-                }}/>)
-        }/>
     );
 }

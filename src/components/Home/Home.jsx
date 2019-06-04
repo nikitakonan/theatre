@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { getStageRows } from "../getState";
-import { getActors } from "../api";
+import { getStageRows } from "../../getState";
+import { getActors } from "../../api";
 import { Stage } from "../Stage/Stage";
 import { ActorsDropdown } from "../ActorsDropdown/ActorsDropdown";
 
