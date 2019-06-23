@@ -5,6 +5,7 @@ import { createStore } from 'redux';
 import { init } from './api';
 import { appReducer } from './reducers';
 import { AuthButton, PrivateRoute, Actors, Login, Home } from "./components/";
+import { initialize } from "./actions";
 import './index.css';
 
 const store = createStore(appReducer);
@@ -15,9 +16,7 @@ store.subscribe(() => {
 });
 
 init(() => {
-    store.dispatch({
-        type: 'INITIALIZE'
-    });
+    store.dispatch(initialize());
 });
 
 render(<AppRouter/>, document.getElementById('root'));
