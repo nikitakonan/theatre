@@ -12,7 +12,6 @@ import { AppBar, Toolbar, Typography, Link } from '@material-ui/core';
 const store = createStore(appReducer);
 
 store.subscribe(() => {
-    console.log(store.getState());
     render(<AppRouter />, document.getElementById('root'));
 });
 

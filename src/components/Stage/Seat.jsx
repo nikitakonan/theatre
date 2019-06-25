@@ -1,37 +1,33 @@
-import React, { Component } from "react";
-import './react-contextmenu.css';
+import React from "react";
 import PropTypes from "prop-types";
 
-export class Seat extends Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
+const Seat = ({ id, row, seat, x, y, svgId, fontColor, borderColor, backgroundColor, onClick }) => {
+    const handleClick = () => {
+        onClick && onClick({ id, row, seat });
     }
-    handleClick() {
-        this.props.onClick && this.props.onClick({
-            seat: this.props.number
-        });
-    }
-    render() {
-        const { number, actor, isBought } = this.props;
-        const borderColor = actor && actor.color || '#fff';
-        const backgroundColor = isBought ? borderColor : undefined;
-        return (
-            <div>
-                <div className="seat"
-                     title={actor && actor.name}
-                     onClick={this.handleClick}
-                     style={{ borderColor, backgroundColor }}>
-                    {number}
-                </div>
-            </div>
-        );
-    }
-}
+    return (
+        <g style={{ cursor: 'pointer' }} onClick={handleClick}>
+            <rect x={x} y={y} width="40" height="40" fill={backgroundColor} stroke={borderColor} strokeWidth="3" />
+            <use href={`#${svgId}`} x={x} y={y} fill={fontColor}></use>
+        </g>
+    );
+};
 
 Seat.propTypes = {
-    number: PropTypes.any,
-    actor: PropTypes.any,
-    isBought: PropTypes.any,
+    id: PropTypes.string.isRequired,
+    row: PropTypes.number.isRequired,
+    seat: PropTypes.number.isRequired,
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+    svgId: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
+    fontColor: PropTypes.string.isRequired,
+    borderColor: PropTypes.string,
     onClick: PropTypes.func
-};
+}
+
+Seat.defaultProps = {
+    borderColor: '#828282'
+}
+
+export { Seat };
