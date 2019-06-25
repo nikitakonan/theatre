@@ -2,6 +2,17 @@ body {
     margin: 0;
 }
 
+.nav-link {
+    padding: 5px;
+    text-decoration: none;
+    color: #eee;
+}
+
+.nav-link.active {
+    color: #333;
+    border-bottom: 1px solid black;
+}
+
 .header {
     display: flex;
     background-color: #aaa;

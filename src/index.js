@@ -24,17 +24,17 @@ render(<AppRouter />, document.getElementById('root'));
 function AppRouter() {
     const state = store.getState();
     if (!state.initialized) {
-        return <div>Not initialized</div>
+        return <div>Инициализация...</div>
     }
     return (
         <BrowserRouter>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" style={{ flex: 1 }}>
-                        Theatre
+                        ТЕАТР
                     </Typography>
-                    <NavLink to="/home">Home</NavLink>
-                    <NavLink to="/actors">Actors</NavLink>
+                    <NavLink className="nav-link" to="/home">СЦЕНА</NavLink>
+                    <NavLink className="nav-link" to="/actors">АКТЕРЫ</NavLink>
                     <AuthButton />
                 </Toolbar>
             </AppBar>

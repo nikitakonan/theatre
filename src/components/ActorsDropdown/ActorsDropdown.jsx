@@ -13,7 +13,7 @@ export class ActorsDropdown extends Component {
             actors: [
                 {
                     id: 'unique_key',
-                    name: 'none',
+                    name: 'Отмена',
                     value: ''
                 },
                 ...props.actors
@@ -32,7 +32,7 @@ export class ActorsDropdown extends Component {
         const { actors } = this.state;
         return (
             <select value={selected ? selected.id : 'unique_key'}
-                    onChange={this.handleActorChanged.bind(this)}>
+                onChange={this.handleActorChanged.bind(this)}>
                 {actors.map(actor =>
                     <option key={actor.id} value={actor.id}>{actor.name}</option>
                 )}

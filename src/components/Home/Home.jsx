@@ -8,6 +8,7 @@ export class Home extends Component {
         super(props);
         this.handleActorChanged = this.handleActorChanged.bind(this);
         this.handleStageClick = this.handleStageClick.bind(this);
+        this.handleChangeEditMode = this.handleChangeEditMode.bind(this);
         this.state = {
             isEditMode: true,
             actors: [],
@@ -27,7 +28,15 @@ export class Home extends Component {
             selectedActor: actor
         })
     }
+    handleChangeEditMode() {
+        this.setState(prevState => ({
+            isEditMode: !prevState.isEditMode
+        }));
+    }
     handleStageClick({ id, row, seat }) {
+        if (!this.state.isEditMode) {
+            return;
+        }
         this.setState(prevState => {
             const { assignedSeats, selectedActor } = prevState;
             const existing = assignedSeats.find(assignedSeat => assignedSeat.id === id);
@@ -55,7 +64,13 @@ export class Home extends Component {
         const { assignedSeats, actors, selectedActor, isEditMode } = this.state;
         return (
             <div>
-                <h1>Tickets{isEditMode && ' (edit mode)'}</h1>
+                <h1>Билеты{isEditMode && ' (редактирование)'}</h1>
+                <div>
+                    <label htmlFor="edit-mode-input">
+                        Режим редактирования
+                        <input id="edit-mode-input" type="checkbox" checked={isEditMode} onChange={this.handleChangeEditMode} />
+                    </label>
+                </div>
                 <ActorsDropdown selected={selectedActor}
                     actors={actors}
                     onChange={this.handleActorChanged} />

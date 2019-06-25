@@ -8,17 +8,17 @@ export const AuthButton = withRouter(({ history }) => {
     return user != null
         ? (
             <>
-                <Typography variant="subtitle1">
-                    Welcome {user.email}{" "}
+                <Typography style={{ marginLeft: 20, color: '#eee' }} variant="caption">
+                    Привет {user.email}{" "}
                 </Typography>
                 <Button color="inherit" onClick={() => { signOut().then(() => { history.push('/'); }) }}>
-                    Sign Out
+                    Выйти
                 </Button>
             </>
         )
         : (
-            <Typography>
-                You are not logged in
+            <Typography style={{ marginLeft: 20, color: '#eee' }} variant="caption">
+                Вы не зарегистрированы
             </Typography>
         );
 }

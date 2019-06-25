@@ -47,27 +47,27 @@ export class Login extends Component {
             <div>
                 <form className="login-form" onSubmit={this.handleLogin.bind(this)}>
                     <label className="label" htmlFor="email">
-                        email
-                        <input placeholder="email"
-                               className="input"
-                               id="email"
-                               name="email"
-                               type="email"
-                               value={email}
-                               onChange={this.handleInputChange.bind(this)}/>
+                        Емэйл:
+                        <input placeholder="емэйл"
+                            className="input"
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={email}
+                            onChange={this.handleInputChange.bind(this)} />
                     </label>
                     <label className="label" htmlFor="pwd">
-                        password
-                        <input placeholder="password"
-                               className="input"
-                               id="pwd"
-                               name="password"
-                               type="password"
-                               value={password}
-                               onChange={this.handleInputChange.bind(this)}/>
+                        Пароль:
+                        <input placeholder="пароль"
+                            className="input"
+                            id="pwd"
+                            name="password"
+                            type="password"
+                            value={password}
+                            onChange={this.handleInputChange.bind(this)} />
                     </label>
 
-                    <button className="button" onClick={this.handleLogin.bind(this)}>Log in</button>
+                    <button className="button" onClick={this.handleLogin.bind(this)}>Войти</button>
                     {error && <div className="error">{error}</div>}
                 </form>
             </div>
