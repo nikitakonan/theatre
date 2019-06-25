@@ -44,6 +44,18 @@ export function getActors() {
         }));
 }
 
+export function getAssignedSeats() {
+    return firestore().collection('assignedSeats').get()
+        .then(snapshot => snapshot.docs.map(docSnapshot => {
+            const data = docSnapshot.data();
+            return data;
+        }));
+}
+
+export function assignSeat(seat) {
+    return firestore().collection('assignedSeats').add(seat);
+}
+
 export function addActor(actor) {
     return firestore().collection('actors').add(actor);
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getActors } from "../../api";
+import { getActors, getAssignedSeats, assignSeat } from "../../api";
 import { Stage } from "../Stage/Stage";
 import { ActorsDropdown } from "../ActorsDropdown/ActorsDropdown";
 
@@ -18,10 +18,11 @@ export class Home extends Component {
     }
     componentDidMount() {
         getActors().then(actors => {
-            this.setState({
-                actors,
-            })
-        })
+            this.setState({ actors });
+        });
+        getAssignedSeats().then(assignedSeats => {
+            this.setState({ assignedSeats });
+        });
     }
     handleActorChanged(actor) {
         this.setState({
@@ -49,12 +50,15 @@ export class Home extends Component {
                 }
             } else {
                 if (selectedActor) {
-                    assignedSeats.push({
+                    const assignedSeat = {
                         actor: selectedActor,
                         id,
                         row,
                         seat
-                    });
+                    }
+                    assignSeat(assignedSeat);
+                    // TODO If something will go wrong, the state will be inconsistent with server
+                    assignedSeats.push(assignedSeat);
                 }
             }
             return prevState;
