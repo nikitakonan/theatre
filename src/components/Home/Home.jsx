@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { getActors, getAssignedSeats, assignSeat, removeSeat } from "../../api";
+import { getActors, getAssignedSeats, assignSeat, removeSeat, clearSeats, assignSeats } from "../../api";
 import { Stage } from "../Stage/Stage";
 import { ActorsDropdown } from "../ActorsDropdown/ActorsDropdown";
+import { Button } from '@material-ui/core';
+import { randomize } from '../../randomize';
+import { model } from '../Stage/stageModel';
 
 export class Home extends Component {
     constructor(props) {
@@ -9,6 +12,8 @@ export class Home extends Component {
         this.handleActorChanged = this.handleActorChanged.bind(this);
         this.handleStageClick = this.handleStageClick.bind(this);
         this.handleChangeEditMode = this.handleChangeEditMode.bind(this);
+        this.handleGenerate = this.handleGenerate.bind(this);
+        this.handleClearStage = this.handleClearStage.bind(this);
         this.state = {
             isEditMode: true,
             actors: [],
@@ -67,31 +72,58 @@ export class Home extends Component {
             return prevState;
         });
     }
+    handleGenerate() {
+        const seats = model.reduce((acc, curr) => acc.concat(curr), []).map(({ id, row, seat }) => {
+            return {
+                id, row, seat
+            };
+        });
+        const { actors } = this.state;
+        const res = randomize(actors, seats);
+        assignSeats(res);
+        this.setState({
+            assignedSeats: res
+        });
+    }
+    handleClearStage() {
+        clearSeats();
+        this.setState({
+            assignedSeats: []
+        });
+    }
     render() {
         const { assignedSeats, actors, selectedActor, isEditMode } = this.state;
         return (
             <div>
-                <h1>Билеты{isEditMode && ' (редактирование)'}</h1>
-                <div>
-                    <label htmlFor="edit-mode-input">
-                        Режим редактирования
+                <div style={{ display: 'flex' }}>
+                    <h1 style={{ flex: 1 }}>Билеты{isEditMode && ' (редактирование)'}</h1>
+                    <div>
+                        <Button onClick={this.handleGenerate}>GEN</Button>
+                        <Button onClick={this.handleClearStage}>CLEAR</Button>
+                        <div>
+                            <label htmlFor="edit-mode-input">
+                                Режим редактирования
                         <input id="edit-mode-input" type="checkbox" checked={isEditMode} onChange={this.handleChangeEditMode} />
-                    </label>
+                            </label>
+                        </div>
+                        <ActorsDropdown selected={selectedActor}
+                            actors={actors}
+                            onChange={this.handleActorChanged} />
+                        {
+                            selectedActor &&
+                            <div style={{ display: 'inline' }}>
+                                <div style={{
+                                    width: 20,
+                                    height: 20,
+                                    borderRadius: 10,
+                                    display: 'inline-block',
+                                    backgroundColor: selectedActor.color
+                                }}></div>
+                                {selectedActor.name}
+                            </div>
+                        }
+                    </div>
                 </div>
-                <ActorsDropdown selected={selectedActor}
-                    actors={actors}
-                    onChange={this.handleActorChanged} />
-                {selectedActor &&
-                    <div style={{ display: 'inline' }}>
-                        <div style={{
-                            width: 20,
-                            height: 20,
-                            borderRadius: 10,
-                            display: 'inline-block',
-                            backgroundColor: selectedActor.color
-                        }}></div>
-                        {selectedActor.name}
-                    </div>}
                 <Stage assignedSeats={assignedSeats} onClick={this.handleStageClick} />
             </div>
         );

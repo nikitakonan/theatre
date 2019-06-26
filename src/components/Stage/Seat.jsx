@@ -20,14 +20,14 @@ Seat.propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
     svgId: PropTypes.string.isRequired,
-    backgroundColor: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string,
     fontColor: PropTypes.string.isRequired,
     borderColor: PropTypes.string,
     onClick: PropTypes.func
 }
 
 Seat.defaultProps = {
-    borderColor: '#828282'
+    backgroundColor: '#F8F8F8'
 }
 
 export { Seat };

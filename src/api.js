@@ -60,6 +60,25 @@ export function removeSeat(seat) {
     return firestore().collection('assignedSeats').doc(seat.id).delete();
 }
 
+export function assignSeats(seats) {
+    const db = firestore();
+    const batch = db.batch();
+    seats.forEach(seat => {
+        const ref = db.collection('assignedSeats').doc(seat.id);
+        batch.set(ref, seat);
+    });
+    return batch.commit();
+}
+
+export function clearSeats() {
+    const db = firestore();
+    const batch = db.batch();
+    return db.collection('assignedSeats').get().then(snapshot => {
+        snapshot.docs.forEach(doc => batch.delete(doc.ref));
+        return batch.commit();
+    });
+}
+
 export function addActor(actor) {
     return firestore().collection('actors').add(actor);
 }
