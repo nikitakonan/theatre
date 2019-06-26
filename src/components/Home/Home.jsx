@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getActors, getAssignedSeats, assignSeat } from "../../api";
+import { getActors, getAssignedSeats, assignSeat, removeSeat } from "../../api";
 import { Stage } from "../Stage/Stage";
 import { ActorsDropdown } from "../ActorsDropdown/ActorsDropdown";
 
@@ -17,12 +17,13 @@ export class Home extends Component {
         };
     }
     componentDidMount() {
-        getActors().then(actors => {
-            this.setState({ actors });
-        });
-        getAssignedSeats().then(assignedSeats => {
-            this.setState({ assignedSeats });
-        });
+        Promise.all([getActors(), getAssignedSeats()])
+            .then(([actors, assignedSeats]) => {
+                this.setState({
+                    actors,
+                    assignedSeats
+                });
+            });
     }
     handleActorChanged(actor) {
         this.setState({
@@ -44,7 +45,9 @@ export class Home extends Component {
             if (existing) {
                 if (selectedActor) {
                     existing.actor = selectedActor;
+                    assignSeat(existing);
                 } else {
+                    removeSeat(existing);
                     const seatIndex = assignedSeats.indexOf(existing);
                     assignedSeats.splice(seatIndex, 1);
                 }

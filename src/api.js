@@ -53,7 +53,11 @@ export function getAssignedSeats() {
 }
 
 export function assignSeat(seat) {
-    return firestore().collection('assignedSeats').add(seat);
+    return firestore().collection('assignedSeats').doc(seat.id).set(seat);
+}
+
+export function removeSeat(seat) {
+    return firestore().collection('assignedSeats').doc(seat.id).delete();
 }
 
 export function addActor(actor) {
