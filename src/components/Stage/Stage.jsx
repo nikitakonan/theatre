@@ -8,10 +8,14 @@ const Stage = ({ assignedSeats, onClick }) => {
     allSeats.forEach(seat => {
         const assigned = assignedSeats.find(a => a.id === seat.id);
         if (assigned) {
+            if (assigned.isBought) {
+                seat.backgroundColor = assigned.actor.color;
+            }
             seat.borderColor = assigned.actor.color;
             seat.fontColor = 'black';
         } else {
             seat.borderColor = '#828282';
+            seat.backgroundColor = '#F8F8F8';
             seat.fontColor = '#222';
         }
     });

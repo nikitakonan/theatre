@@ -42,6 +42,17 @@ export class Home extends Component {
     }
     handleStageClick({ id, row, seat }) {
         if (!this.state.isEditMode) {
+            this.setState(prevState => {
+                const assigned = prevState.assignedSeats.find(s => s.id === id);
+                debugger
+                if (assigned) {
+                    assigned.isBought = !assigned.isBought;
+                    assignSeat(assigned);
+                    return prevState;
+                }
+                return {};
+            })
+
             return;
         }
         this.setState(prevState => {
@@ -95,34 +106,35 @@ export class Home extends Component {
         const { assignedSeats, actors, selectedActor, isEditMode } = this.state;
         return (
             <div>
+                <label htmlFor="edit-mode-input">
+                    Режим редактирования
+                    <input id="edit-mode-input" type="checkbox" checked={isEditMode} onChange={this.handleChangeEditMode} />
+                </label>
                 <div style={{ display: 'flex' }}>
                     <h1 style={{ flex: 1 }}>Билеты{isEditMode && ' (редактирование)'}</h1>
-                    <div>
-                        <Button onClick={this.handleGenerate}>GEN</Button>
-                        <Button onClick={this.handleClearStage}>CLEAR</Button>
+                    {
+                        isEditMode &&
                         <div>
-                            <label htmlFor="edit-mode-input">
-                                Режим редактирования
-                        <input id="edit-mode-input" type="checkbox" checked={isEditMode} onChange={this.handleChangeEditMode} />
-                            </label>
+                            <Button onClick={this.handleGenerate}>GEN</Button>
+                            <Button onClick={this.handleClearStage}>CLEAR</Button>
+                            <ActorsDropdown selected={selectedActor}
+                                actors={actors}
+                                onChange={this.handleActorChanged} />
+                            {
+                                selectedActor &&
+                                <div style={{ display: 'inline' }}>
+                                    <div style={{
+                                        width: 20,
+                                        height: 20,
+                                        borderRadius: 10,
+                                        display: 'inline-block',
+                                        backgroundColor: selectedActor.color
+                                    }}></div>
+                                    {selectedActor.name}
+                                </div>
+                            }
                         </div>
-                        <ActorsDropdown selected={selectedActor}
-                            actors={actors}
-                            onChange={this.handleActorChanged} />
-                        {
-                            selectedActor &&
-                            <div style={{ display: 'inline' }}>
-                                <div style={{
-                                    width: 20,
-                                    height: 20,
-                                    borderRadius: 10,
-                                    display: 'inline-block',
-                                    backgroundColor: selectedActor.color
-                                }}></div>
-                                {selectedActor.name}
-                            </div>
-                        }
-                    </div>
+                    }
                 </div>
                 <Stage assignedSeats={assignedSeats} onClick={this.handleStageClick} />
             </div>
