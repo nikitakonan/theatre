@@ -7,19 +7,11 @@ import { randomize } from '../../randomize';
 import { model } from '../Stage/stageModel';
 
 export class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.handleActorChanged = this.handleActorChanged.bind(this);
-        this.handleStageClick = this.handleStageClick.bind(this);
-        this.handleChangeEditMode = this.handleChangeEditMode.bind(this);
-        this.handleGenerate = this.handleGenerate.bind(this);
-        this.handleClearStage = this.handleClearStage.bind(this);
-        this.state = {
-            isEditMode: true,
-            actors: [],
-            selectedActor: null,
-            assignedSeats: []
-        };
+    state = {
+        isEditMode: true,
+        actors: [],
+        selectedActor: null,
+        assignedSeats: []
     }
     componentDidMount() {
         Promise.all([getActors(), getAssignedSeats()])
@@ -30,21 +22,20 @@ export class Home extends Component {
                 });
             });
     }
-    handleActorChanged(actor) {
+    handleActorChanged = actor => {
         this.setState({
             selectedActor: actor
         })
     }
-    handleChangeEditMode() {
+    handleChangeEditMode = () => {
         this.setState(prevState => ({
             isEditMode: !prevState.isEditMode
         }));
     }
-    handleStageClick({ id, row, seat }) {
+    handleStageClick = ({ id, row, seat }) => {
         if (!this.state.isEditMode) {
             this.setState(prevState => {
                 const assigned = prevState.assignedSeats.find(s => s.id === id);
-                debugger
                 if (assigned) {
                     assigned.isBought = !assigned.isBought;
                     assignSeat(assigned);
@@ -83,7 +74,7 @@ export class Home extends Component {
             return prevState;
         });
     }
-    handleGenerate() {
+    handleGenerate = () => {
         const seats = model.reduce((acc, curr) => acc.concat(curr), []).map(({ id, row, seat }) => {
             return {
                 id, row, seat
@@ -96,7 +87,7 @@ export class Home extends Component {
             assignedSeats: res
         });
     }
-    handleClearStage() {
+    handleClearStage = () => {
         clearSeats();
         this.setState({
             assignedSeats: []

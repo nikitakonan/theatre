@@ -18,7 +18,7 @@ export class Actors extends Component {
             });
         });
     }
-    handleAddActor(actor) {
+    handleAddActor = actor => {
         addActor(actor).then(() => {
             this.setState({
                 actors: [
@@ -32,11 +32,11 @@ export class Actors extends Component {
         let { actors } = this.state;
         return (
             <section className="actors">
-                <AddActor onAdd={this.handleAddActor.bind(this)}/>
+                <AddActor onAdd={this.handleAddActor} />
                 <ol>
                     {actors.map((actor) => (
                         <li key={actor.id}>
-                            <Actor {...actor}/>
+                            <Actor {...actor} />
                         </li>
                     ))}
                 </ol>

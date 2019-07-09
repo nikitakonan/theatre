@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component } from 'react';
 
 export class AddActor extends Component {
     constructor(props) {
@@ -8,13 +8,13 @@ export class AddActor extends Component {
             color: '',
         };
     }
-    handleInputChange(event) {
+    handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
     }
-    handleAddClick() {
+    handleAddClick = () => {
         const { onAdd } = this.props;
         typeof onAdd === 'function' && onAdd({ ...this.state });
         this.setState({
@@ -29,20 +29,20 @@ export class AddActor extends Component {
                 <label htmlFor="name">
                     name:
                     <input type="text"
-                           id="name"
-                           name="name"
-                           value={name}
-                           onChange={this.handleInputChange.bind(this)}/>
+                        id="name"
+                        name="name"
+                        value={name}
+                        onChange={this.handleInputChange} />
                 </label>
                 <label htmlFor="color">
                     color:
                     <input type="text"
-                           id="color"
-                           name="color"
-                           value={color}
-                           onChange={this.handleInputChange.bind(this)}/>
+                        id="color"
+                        name="color"
+                        value={color}
+                        onChange={this.handleInputChange} />
                 </label>
-                <button onClick={this.handleAddClick.bind(this)}>add</button>
+                <button onClick={this.handleAddClick}>add</button>
             </div>
         );
     }

@@ -20,7 +20,7 @@ export class ActorsDropdown extends Component {
             ]
         }
     }
-    handleActorChanged(event) {
+    handleActorChanged = event => {
         const { onChange } = this.props;
         const { actors } = this.state;
         const id = event.target.value;
@@ -32,7 +32,7 @@ export class ActorsDropdown extends Component {
         const { actors } = this.state;
         return (
             <select value={selected ? selected.id : 'unique_key'}
-                onChange={this.handleActorChanged.bind(this)}>
+                onChange={this.handleActorChanged}>
                 {actors.map(actor =>
                     <option key={actor.id} value={actor.id}>{actor.name}</option>
                 )}

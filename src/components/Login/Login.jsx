@@ -13,13 +13,13 @@ export class Login extends Component {
             error: null
         };
     }
-    handleInputChange(event) {
+    handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
     }
-    handleLogin(event) {
+    handleLogin = event => {
         event.preventDefault();
         const { email, password } = this.state;
 
@@ -45,7 +45,7 @@ export class Login extends Component {
         }
         return (
             <div>
-                <form className="login-form" onSubmit={this.handleLogin.bind(this)}>
+                <form className="login-form" onSubmit={this.handleLogin}>
                     <label className="label" htmlFor="email">
                         Емэйл:
                         <input placeholder="емэйл"
@@ -54,7 +54,7 @@ export class Login extends Component {
                             name="email"
                             type="email"
                             value={email}
-                            onChange={this.handleInputChange.bind(this)} />
+                            onChange={this.handleInputChange} />
                     </label>
                     <label className="label" htmlFor="pwd">
                         Пароль:
@@ -64,14 +64,13 @@ export class Login extends Component {
                             name="password"
                             type="password"
                             value={password}
-                            onChange={this.handleInputChange.bind(this)} />
+                            onChange={this.handleInputChange} />
                     </label>
 
-                    <button className="button" onClick={this.handleLogin.bind(this)}>Войти</button>
+                    <button className="button" onClick={this.handleLogin}>Войти</button>
                     {error && <div className="error">{error}</div>}
                 </form>
             </div>
         );
     }
 }
-
