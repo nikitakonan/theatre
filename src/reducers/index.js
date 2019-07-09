@@ -1,14 +1,12 @@
-const initial = {
-    initialized: false
-};
+import { combineReducers } from 'redux';
 
-export const appReducer = (state = initial, action) => {
+const initialized = (initialized = false, action) => {
     if (action.type === 'INITIALIZE') {
-        return {
-            ...state,
-            initialized: true,
-        };
-    } else {
-        return state;
+        return true;
     }
-};
+    return initialized;
+}
+
+export const appReducer = combineReducers({
+    initialized
+});

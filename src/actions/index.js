@@ -1,5 +1,3 @@
-export const initialize = () => {
-    return {
-        type: 'INITIALIZE'
-    }
-};
+export const initialize = () => ({
+    type: 'INITIALIZE'
+});
