@@ -1,35 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Actor } from "./Actor";
 import { AddActor } from "./AddActor";
 import './actors.css';
 import { addActor, getActors } from "../../api";
 
-export class Actors extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            actors: []
-        };
-    }
+class Actors extends Component {
     componentDidMount() {
         getActors().then(actors => {
-            this.setState({
+            this.props.dispatch({
+                type: 'ACTORS_LOADED',
                 actors
             });
         });
     }
     handleAddActor = actor => {
         addActor(actor).then(() => {
-            this.setState({
-                actors: [
-                    ...this.state.actors,
-                    actor
-                ]
+            this.props.dispatch({
+                type: 'ADD_ACTOR',
+                actor
             });
         });
     }
     render() {
-        let { actors } = this.state;
+        const { actors } = this.props;
         return (
             <section className="actors">
                 <AddActor onAdd={this.handleAddActor} />
@@ -44,3 +38,11 @@ export class Actors extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        actors: state.actors
+    }
+};
+
+export default connect(mapStateToProps)(Actors);

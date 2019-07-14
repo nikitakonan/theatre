@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { actors } from './actors';
 
 const initialized = (initialized = false, action) => {
     if (action.type === 'INITIALIZE') {
@@ -8,5 +9,6 @@ const initialized = (initialized = false, action) => {
 }
 
 export const appReducer = combineReducers({
-    initialized
+    initialized,
+    actors
 });
