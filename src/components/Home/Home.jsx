@@ -1,39 +1,35 @@
 import React, { Component } from 'react';
-import { getActors, getAssignedSeats, assignSeat, removeSeat, clearSeats, assignSeats } from "../../api";
-import { Stage } from "../Stage/Stage";
-import { ActorsDropdown } from "../ActorsDropdown/ActorsDropdown";
+import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
-import { randomize } from '../../randomize';
+import { getActors, getAssignedSeats, assignSeat, removeSeat, clearSeats, assignSeats } from "../../api";
+import { ActorsDropdown, Stage } from "..";
 import { model } from '../Stage/stageModel';
+import { randomize } from '../../randomize';
+import { setActors, toggleEditMode, selectActor } from '../../actions';
 
-export class Home extends Component {
+class Home extends Component {
     state = {
-        isEditMode: true,
-        actors: [],
-        selectedActor: null,
         assignedSeats: []
     }
     componentDidMount() {
         Promise.all([getActors(), getAssignedSeats()])
             .then(([actors, assignedSeats]) => {
+                console.log(`got actors`, actors);
+                this.props.dispatch(setActors(actors));
                 this.setState({
-                    actors,
                     assignedSeats
                 });
             });
     }
     handleActorChanged = actor => {
-        this.setState({
-            selectedActor: actor
-        })
+        this.props.dispatch(selectActor(actor));
     }
     handleChangeEditMode = () => {
-        this.setState(prevState => ({
-            isEditMode: !prevState.isEditMode
-        }));
+        this.props.dispatch(toggleEditMode());
     }
     handleStageClick = ({ id, row, seat }) => {
-        if (!this.state.isEditMode) {
+        const { selectedActor } = this.props;
+        if (!this.props.isEditMode) {
             this.setState(prevState => {
                 const assigned = prevState.assignedSeats.find(s => s.id === id);
                 if (assigned) {
@@ -47,7 +43,7 @@ export class Home extends Component {
             return;
         }
         this.setState(prevState => {
-            const { assignedSeats, selectedActor } = prevState;
+            const { assignedSeats } = prevState;
             const existing = assignedSeats.find(assignedSeat => assignedSeat.id === id);
             if (existing) {
                 if (selectedActor) {
@@ -75,12 +71,14 @@ export class Home extends Component {
         });
     }
     handleGenerate = () => {
-        const seats = model.reduce((acc, curr) => acc.concat(curr), []).map(({ id, row, seat }) => {
-            return {
-                id, row, seat
-            };
-        });
-        const { actors } = this.state;
+        const seats = model
+            .reduce((acc, curr) => acc.concat(curr), [])
+            .map(({ id, row, seat }) => {
+                return {
+                    id, row, seat
+                };
+            });
+        const { actors } = this.props;
         const res = randomize(actors, seats);
         assignSeats(res);
         this.setState({
@@ -94,7 +92,8 @@ export class Home extends Component {
         });
     }
     render() {
-        const { assignedSeats, actors, selectedActor, isEditMode } = this.state;
+        const { isEditMode, actors, selectedActor } = this.props;
+        const { assignedSeats } = this.state;
         return (
             <div>
                 <label htmlFor="edit-mode-input">
@@ -132,3 +131,13 @@ export class Home extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isEditMode: state.stage.isEditMode,
+        actors: state.actors,
+        selectedActor: state.stage.selectedActor
+    }
+};
+
+export default connect(mapStateToProps)(Home);

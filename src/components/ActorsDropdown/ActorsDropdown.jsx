@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class ActorsDropdown extends Component {
+export default class ActorsDropdown extends Component {
     constructor(props) {
         super(props);
         this.state = {

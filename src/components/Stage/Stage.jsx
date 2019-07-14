@@ -72,4 +72,4 @@ Stage.defaultProps = {
     assignedSeats: []
 };
 
-export { Stage };
+export default Stage;
