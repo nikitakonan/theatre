@@ -3,13 +3,17 @@ import { Actor } from "..";
 
 const ActorList = ({ actors }) => {
     return (
-        <ol>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            overflow: 'auto',
+            padding: '10px'
+        }}>
             {actors.map(actor => (
-                <li key={actor.id}>
-                    <Actor {...actor} />
-                </li>
+                <Actor key={actor.id} {...actor} />
             ))}
-        </ol>
+        </div>
     )
 }
 
