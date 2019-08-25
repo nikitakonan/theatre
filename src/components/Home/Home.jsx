@@ -5,27 +5,29 @@ import { getActors, getAssignedSeats, assignSeat, removeSeat, clearSeats, assign
 import { ActorsDropdown, Stage } from "..";
 import { model } from '../Stage/stageModel';
 import { randomize } from '../../randomize';
-import { setActors, toggleEditMode, selectActor } from '../../actions';
+import * as actions from '../../actions';
+
+const mapStateToProps = (state) => ({
+    isEditMode: state.stage.isEditMode,
+    actors: state.actors,
+    selectedActor: state.stage.selectedActor
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    setActors: actors => dispatch(actions.setActors(actors)),
+    selectActor: actor => dispatch(actions.selectActor(actor)),
+    toggleEditMode: () => dispatch(actions.toggleEditMode()),
+});
 
 class Home extends Component {
     state = {
         assignedSeats: []
     }
     componentDidMount() {
-        Promise.all([getActors(), getAssignedSeats()])
-            .then(([actors, assignedSeats]) => {
-                console.log(`got actors`, actors);
-                this.props.dispatch(setActors(actors));
-                this.setState({
-                    assignedSeats
-                });
-            });
-    }
-    handleActorChanged = actor => {
-        this.props.dispatch(selectActor(actor));
-    }
-    handleChangeEditMode = () => {
-        this.props.dispatch(toggleEditMode());
+        Promise.all([getActors(), getAssignedSeats()]).then(([actors, assignedSeats]) => {
+            this.props.setActors(actors);
+            this.setState({ assignedSeats });
+        });
     }
     handleStageClick = ({ id, row, seat }) => {
         const { selectedActor } = this.props;
@@ -92,13 +94,13 @@ class Home extends Component {
         });
     }
     render() {
-        const { isEditMode, actors, selectedActor } = this.props;
+        const { isEditMode, actors, selectedActor, toggleEditMode, selectActor } = this.props;
         const { assignedSeats } = this.state;
         return (
             <div>
                 <label htmlFor="edit-mode-input">
                     Режим редактирования
-                    <input id="edit-mode-input" type="checkbox" checked={isEditMode} onChange={this.handleChangeEditMode} />
+                    <input id="edit-mode-input" type="checkbox" checked={isEditMode} onChange={toggleEditMode} />
                 </label>
                 <div style={{ display: 'flex' }}>
                     <h1 style={{ flex: 1 }}>Билеты{isEditMode && ' (редактирование)'}</h1>
@@ -109,7 +111,7 @@ class Home extends Component {
                             <Button onClick={this.handleClearStage}>CLEAR</Button>
                             <ActorsDropdown selected={selectedActor}
                                 actors={actors}
-                                onChange={this.handleActorChanged} />
+                                onChange={selectActor} />
                             {
                                 selectedActor &&
                                 <div style={{ display: 'inline' }}>
@@ -132,12 +134,4 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isEditMode: state.stage.isEditMode,
-        actors: state.actors,
-        selectedActor: state.stage.selectedActor
-    }
-};
-
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
