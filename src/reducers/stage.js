@@ -1,6 +1,17 @@
+import { model } from '../components/Stage/stageModel';
+
+const seats = model
+    .flat()
+    .map(({ id, row, seat }) => ({ id, row, seat }))
+    .reduce((acc, { id, ...rest }) => {
+        acc[id] = rest;
+        return acc;
+    }, {});
+
 const initialState = {
     isEditMode: false,
-    selectedActor: null
+    selectedActor: null,
+    seats
 }
 
 export const stage = (stage = initialState, action) => {

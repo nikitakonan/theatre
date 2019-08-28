@@ -7,10 +7,10 @@ import { model } from '../Stage/stageModel';
 import { randomize } from '../../randomize';
 import * as actions from '../../actions';
 
-const mapStateToProps = (state) => ({
-    isEditMode: state.stage.isEditMode,
-    actors: state.actors,
-    selectedActor: state.stage.selectedActor
+const mapStateToProps = ({ stage, actors }) => ({
+    actors,
+    isEditMode: stage.isEditMode,
+    selectedActor: stage.selectedActor
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,82 +20,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Home extends Component {
-    state = {
-        assignedSeats: []
-    }
     componentDidMount() {
-        Promise.all([getActors(), getAssignedSeats()]).then(([actors, assignedSeats]) => {
-            this.props.setActors(actors);
-            this.setState({ assignedSeats });
-        });
-    }
-    handleStageClick = ({ id, row, seat }) => {
-        const { selectedActor } = this.props;
-        if (!this.props.isEditMode) {
-            this.setState(prevState => {
-                const assigned = prevState.assignedSeats.find(s => s.id === id);
-                if (assigned) {
-                    assigned.isBought = !assigned.isBought;
-                    assignSeat(assigned);
-                    return prevState;
-                }
-                return {};
-            })
-
-            return;
-        }
-        this.setState(prevState => {
-            const { assignedSeats } = prevState;
-            const existing = assignedSeats.find(assignedSeat => assignedSeat.id === id);
-            if (existing) {
-                if (selectedActor) {
-                    existing.actor = selectedActor;
-                    assignSeat(existing);
-                } else {
-                    removeSeat(existing);
-                    const seatIndex = assignedSeats.indexOf(existing);
-                    assignedSeats.splice(seatIndex, 1);
-                }
-            } else {
-                if (selectedActor) {
-                    const assignedSeat = {
-                        actor: selectedActor,
-                        id,
-                        row,
-                        seat
-                    }
-                    assignSeat(assignedSeat);
-                    // TODO If something will go wrong, the state will be inconsistent with server
-                    assignedSeats.push(assignedSeat);
-                }
-            }
-            return prevState;
-        });
-    }
-    handleGenerate = () => {
-        const seats = model
-            .reduce((acc, curr) => acc.concat(curr), [])
-            .map(({ id, row, seat }) => {
-                return {
-                    id, row, seat
-                };
-            });
-        const { actors } = this.props;
-        const res = randomize(actors, seats);
-        assignSeats(res);
-        this.setState({
-            assignedSeats: res
-        });
-    }
-    handleClearStage = () => {
-        clearSeats();
-        this.setState({
-            assignedSeats: []
-        });
+        getActors().then(this.props.setActors);
     }
     render() {
-        const { isEditMode, actors, selectedActor, toggleEditMode, selectActor } = this.props;
-        const { assignedSeats } = this.state;
+        const { isEditMode, toggleEditMode } = this.props;
+        const { actors, selectedActor, selectActor } = this.props;
         return (
             <div>
                 <label htmlFor="edit-mode-input">
@@ -107,8 +37,6 @@ class Home extends Component {
                     {
                         isEditMode &&
                         <div>
-                            <Button onClick={this.handleGenerate}>GEN</Button>
-                            <Button onClick={this.handleClearStage}>CLEAR</Button>
                             <ActorsDropdown selected={selectedActor}
                                 actors={actors}
                                 onChange={selectActor} />
@@ -128,7 +56,7 @@ class Home extends Component {
                         </div>
                     }
                 </div>
-                <Stage assignedSeats={assignedSeats} onClick={this.handleStageClick} />
+                <Stage />
             </div>
         );
     }

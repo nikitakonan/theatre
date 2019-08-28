@@ -3,21 +3,12 @@ import PropTypes from 'prop-types';
 import { Seat } from './Seat';
 import { model } from './stageModel';
 
-const Stage = ({ assignedSeats, onClick }) => {
+const Stage = ({ }) => {
     const allSeats = model.flat();
     allSeats.forEach(seat => {
-        const assigned = assignedSeats.find(a => a.id === seat.id);
-        if (assigned) {
-            if (assigned.isBought) {
-                seat.backgroundColor = assigned.actor.color;
-            }
-            seat.borderColor = assigned.actor.color;
-            seat.fontColor = 'black';
-        } else {
-            seat.borderColor = '#828282';
-            seat.backgroundColor = '#F8F8F8';
-            seat.fontColor = '#222';
-        }
+        seat.borderColor = '#828282';
+        seat.backgroundColor = '#F8F8F8';
+        seat.fontColor = '#222';
     });
     return (
         <div style={{ overflow: 'auto' }}>
@@ -25,17 +16,17 @@ const Stage = ({ assignedSeats, onClick }) => {
                 <rect x="0.5" y="1.5" width="901" height="638" fill="url(#paint0_linear)" stroke="#333333" />
                 <path d="M33 515L868.5 514.5" stroke="black" strokeWidth="3" />
                 <path d="M227 1C407.824 53.8847 547.008 49.399 694 1" stroke="black" />
-                {model[0].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[1].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[2].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[3].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[4].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[5].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[6].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[7].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[8].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[9].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
-                {model[10].map(s => <Seat key={s.id} onClick={onClick} {...s} />)}
+                {model[0].map(s => <Seat key={s.id} {...s} />)}
+                {model[1].map(s => <Seat key={s.id} {...s} />)}
+                {model[2].map(s => <Seat key={s.id} {...s} />)}
+                {model[3].map(s => <Seat key={s.id} {...s} />)}
+                {model[4].map(s => <Seat key={s.id} {...s} />)}
+                {model[5].map(s => <Seat key={s.id} {...s} />)}
+                {model[6].map(s => <Seat key={s.id} {...s} />)}
+                {model[7].map(s => <Seat key={s.id} {...s} />)}
+                {model[8].map(s => <Seat key={s.id} {...s} />)}
+                {model[9].map(s => <Seat key={s.id} {...s} />)}
+                {model[10].map(s => <Seat key={s.id} {...s} />)}
                 <defs>
                     <path id="one" d="M21.1259 25.3333H18.999V15.0589L15.8613 16.1312V14.3294L20.8535 12.4925H21.1259V25.3333Z" />
                     <path id="two" d="M23.9472 25.3333H15.3427V23.8656L19.6054 19.2161C20.2207 18.5306 20.6572 17.9593 20.915 17.5023C21.1787 17.0394 21.3105 16.5765 21.3105 16.1136C21.3105 15.5042 21.1377 15.012 20.792 14.637C20.4521 14.262 19.9921 14.0745 19.4121 14.0745C18.7207 14.0745 18.1845 14.2855 17.8037 14.7074C17.4228 15.1292 17.2324 15.7064 17.2324 16.4388H15.0966C15.0966 15.6595 15.2724 14.9593 15.624 14.3382C15.9814 13.7113 16.4882 13.2249 17.1445 12.8792C17.8066 12.5335 18.5683 12.3607 19.4296 12.3607C20.6718 12.3607 21.6503 12.6742 22.3652 13.3011C23.0859 13.9222 23.4462 14.7835 23.4462 15.8851C23.4462 16.5238 23.2646 17.1947 22.9013 17.8978C22.5439 18.5951 21.955 19.389 21.1347 20.2796L18.0058 23.6283H23.9472V25.3333Z" />
@@ -64,12 +55,9 @@ const Stage = ({ assignedSeats, onClick }) => {
 }
 
 Stage.propTypes = {
-    onClick: PropTypes.func.isRequired,
-    assignedSeats: PropTypes.array
 }
 
 Stage.defaultProps = {
-    assignedSeats: []
 };
 
 export default Stage;
