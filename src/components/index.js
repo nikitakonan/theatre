@@ -8,3 +8,4 @@ export { default as Stage } from './Stage/Stage';
 export { default as AddActor } from './AddActor/AddActor';
 export { default as ActorList } from './ActorList/ActorList';
 export { default as Actor } from './Actor/Actor';
+export { default as AppBar } from './AppBar/AppBar';

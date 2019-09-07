@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, TextField, Paper } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
 import { logIn } from "../../api";
 import './login.css';
@@ -45,31 +46,33 @@ export class Login extends Component {
         }
         return (
             <div>
-                <form className="login-form" onSubmit={this.handleLogin}>
-                    <label className="label" htmlFor="email">
-                        Емэйл:
-                        <input placeholder="емэйл"
-                            className="input"
-                            id="email"
+                <Paper className="form-container">
+                    <form className="login-form" onSubmit={this.handleLogin}>
+                        <TextField
+                            required
+                            width="100%"
                             name="email"
-                            type="email"
+                            label="email"
+                            margin="normal"
                             value={email}
                             onChange={this.handleInputChange} />
-                    </label>
-                    <label className="label" htmlFor="pwd">
-                        Пароль:
-                        <input placeholder="пароль"
-                            className="input"
-                            id="pwd"
-                            name="password"
+                        <TextField
+                            required
                             type="password"
+                            name="password"
+                            label="password"
+                            margin="normal"
                             value={password}
                             onChange={this.handleInputChange} />
-                    </label>
-
-                    <button className="button" onClick={this.handleLogin}>Войти</button>
-                    {error && <div className="error">{error}</div>}
-                </form>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.handleLogin}>
+                            Войти
+                        </Button>
+                        {error && <div className="error">{error}</div>}
+                    </form>
+                </Paper>
             </div>
         );
     }
